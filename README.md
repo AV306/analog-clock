@@ -1,2 +1,3 @@
 # analog-clock
-Analog Clock made with p5.js
+
+Analog clock made with p5.js. Syncs with computer time every 30 mimutes.
