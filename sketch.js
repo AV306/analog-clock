@@ -41,7 +41,7 @@ function draw()
   if ( (frameCount / fps / 60) % syncFreqMins == 0 )
     sync();
   
-  //console.log( hourHandAngle );
+  //console.log( minuteHandAngle );
 }
 
 function drawClockFace()
@@ -95,7 +95,7 @@ function drawSecondHand()
   drawArm( secondHandAngle, (width/2 - 10) );
   
   if ( secondHandAngle >= 359 )
-    secondHandAngle = 0;
+    secondHandAngle -= 360;
   else secondHandAngle += 6/fps;
 }
 
@@ -107,7 +107,7 @@ function drawMinuteHand()
   drawArm( minuteHandAngle, (width/3) );
   
   if ( minuteHandAngle >= 359 )
-    minuteHandAngle = 0;
+    minuteHandAngle -= 360;
   else minuteHandAngle = minuteHandAngle + 1/(6*fps);
   
   pop();
@@ -122,7 +122,7 @@ function drawHourHand()
   drawArm( hourHandAngle, (width/4) );
   
   if ( hourHandAngle >= 359 )
-    hourHandAngle = 0;
+    hourHandAngle -= 360;
   else hourHandAngle += 1/(3600*fps);
   
   pop();
@@ -132,7 +132,7 @@ function sync()
 {
   /* syncs the clock with the computer time by */
   /* setting the hand angle. */
-  hourHandAngle = getHour() * 30 + (30 * getMinute()/60);
+  hourHandAngle = (getHour() * 30) + (30 * getMinute()/60);
   minuteHandAngle = getMinute() * 6 + (6 * getSecond()/60);
   secondHandAngle = getSecond() * 6;
   
